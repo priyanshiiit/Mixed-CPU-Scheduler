@@ -8,9 +8,7 @@
 </head>
 <body>
   
-  <div>
-    
-    
+  <div>   
     <div>
       Algorithm:
       <form id="algorithm">
@@ -26,8 +24,9 @@
               <th>Process</th>
               <th>Arrival Time</th>
               <th>Execute Time</th>
-              <th class="servtime">Service Time</th>
+              <th class="servtime">Waiting Time</th>
               <th class="priority-only">Priority</th>
+              <th class="turnAroundTime">Turn Around Time</th>
           </tr>
           <tr>
               <td>P0</td>
@@ -35,6 +34,7 @@
               <td><input class="initial exectime" type="text" value="5" /></td>
               <td class="servtime"></td>
               <td class="priority-only initial"><input type="text"/></td>
+              <td class="turnAroundTime"></td>
           </tr>
           <tr>
               <td>P1</td>
@@ -42,9 +42,10 @@
               <td><input class="initial exectime" value="3" /></td>
               <td class="servtime"></td>
               <td class="priority-only" ><input type="text"/></td>
+              <td class="turnAroundTime"></td>
           </tr>
       </table>
-      <input id="minus" style="display: inline; left: 428px; position: absolute; top: 170px;" type="button" value="-" onclick="deleteRow();" />
+      <input id="minus" style="display: inline; left: 565px; position: absolute; top: 170px;" type="button" value="-" onclick="deleteRow();" />
       </div>
       <input type="button" value="+" onclick="addRow();" />
   <div>
