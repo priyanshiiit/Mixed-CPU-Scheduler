@@ -1,5 +1,12 @@
-recalculateServiceTime();
+// recalculateServiceTime();
 $('.priority-only').hide();
+$('.Arrival-time').hide();
+$('.Burst-time').hide();
+$('.Priority-time').hide();
+$('.Factor').hide();
+$('.turnAroundTime').show();
+
+
 
 $(document).ready(function () {
   $('input[type=radio][name=algorithm]').change(function () {
@@ -18,10 +25,32 @@ $(document).ready(function () {
       $('.servtime').hide();
       $('#quantumParagraph').show();
       $('.turnAroundTime').hide();
+      $('.Arrival-time').hide();
+      $('.Burst-time').hide();
+      $('.Priority-time').hide();
+      $('.Factor').hide();
+    }
+    else if(this.value=='Best-job-first')
+    {
+      $('#minus').css('left', '1340px');
+      $('.Arrival-time').show();
+      $('.Burst-time').show();
+      $('.Priority-time').show();
+      $('.Factor').show();
+      $('.priority-only').show();
+      $('.servtime').show();
+      $('.turnAroundTime').show();
+      $('td .Factor').innertext('');
+      
     }
     else {
       $('#quantumParagraph').hide();
       $('.servtime').show();
+      $('.Arrival-time').hide();
+      $('.Burst-time').hide();
+      $('.Priority-time').hide();
+      $('.Factor').hide();
+      $('.turnAroundTime').show();
     }
 
     recalculateServiceTime();
@@ -38,8 +67,12 @@ function addRow() {
   + (lastRowNumebr + 1)
   + '</td><td><input class="exectime" type="text"/></td><td class="servtime"></td>'
   //if ($('input[name=algorithm]:checked', '#algorithm').val() == "priority")
-  + '<td class="priority-only"><input type="text"/></td>'
-  + '</td><td class="turnAroundTime"></td></tr>';
+  + '<td class="priority-only initial"><input type="text"/></td>'
+  + '</td><td class="turnAroundTime"></td>'
+  + '</td><td class="Arrival-time initial"><input type="text"/></td>'
+  + '</td><td class="Burst-time initial"><input type="text"/></td>'
+  + '</td><td class="Priority-time initial"><input type="text"/></td>'
+  + '</td><td class="Factor"></td></tr>';
 
   lastRow.after(newRow);
 
@@ -50,9 +83,24 @@ function addRow() {
   if ($('input[name=algorithm]:checked', '#algorithm').val() != "priority")
     $('.priority-only').hide();
 
-    if ($('input[name=algorithm]:checked', '#algorithm').val() != "turnArounTime")
-    $('.turnAroundTime').hide();
+    if ($('input[name=algorithm]:checked', '#algorithm').val() == "robin")
+    {
+        $('.servtime').hide();
+        $('.turnAroundTime').hide();
+    }
 
+  if ($('input[name=algorithm]:checked', '#algorithm').val() != "Best-job-first")
+  {
+     $('.Arrival-time').hide();
+      $('.Burst-time').hide();
+      $('.Priority-time').hide();
+      $('.Factor').hide();
+  }
+  else{
+    $('.priority-only').show();
+  }
+  
+  
   $('#inputTable tr:last input').change(function () {
     recalculateServiceTime();
   });
@@ -101,7 +149,6 @@ function recalculateServiceTime() {
     });
 
     var currentIndex = -1;
-    var beforeIndex=-1;
     for (var i = 0; i < exectuteTimes.length; i++) {
       tat=0;
 
@@ -109,7 +156,6 @@ function recalculateServiceTime() {
 
       if (currentIndex == -1) return;
        
-      console.log(currentIndex);
       
       $(inputTable[currentIndex+1].children[3]).text(totalExectuteTime);
       tat=exectuteTimes[currentIndex]+totalExectuteTime;
@@ -139,7 +185,7 @@ function recalculateServiceTime() {
       tat=exectuteTimes[currentIndex]+totalExectuteTime;
 
       $(inputTable[currentIndex + 1].children[3]).text(totalExectuteTime);
-      $(inputTable[currentIndex + 1].children[5]).text(totalExectuteTime);
+      $(inputTable[currentIndex + 1].children[5]).text(tat);
 
       totalExectuteTime += exectuteTimes[currentIndex];
     }
@@ -150,6 +196,45 @@ function recalculateServiceTime() {
       if (key == 0) return true;
       $(value.children[3]).text("");
     });
+  }
+  else if(algorithm=="Best-job-first")
+  {
+      var exectuteTimes=[];
+     var priority=[];
+     var perAtime=[];
+     var perBtime=[];
+     var perPriority=[];
+     var factor=[];
+    $.each(inputTable, function (key, value) {
+       if(key==0) return true;
+       exectuteTimes[key - 1] = parseInt($(value.children[2]).children().first().val());
+       priority[key-1]=parseInt($(value.children[4]).children().first().val());
+       perAtime[key-1]=parseInt($(value.children[6]).children().first().val());
+       perBtime[key-1]=parseInt($(value.children[7]).children().first().val());
+       perPriority[key-1]=parseInt($(value.children[8]).children().first().val());
+       factor[key-1]=((priority[key-1]*perPriority[key-1])/100+((key-1)*perAtime[key-1])/100+(exectuteTimes[key-1]*perBtime[key-1])/100);
+      });
+       var currentIndex = -1;
+
+       for(var i = 0; i < exectuteTimes.length; i++) {
+        $(inputTable[i + 1].children[9]).text(factor[i].toFixed(2));
+       }
+       
+       for (var i = 0; i < exectuteTimes.length; i++) {
+         tat=0;
+         currentIndex = findNextIndexWithPriority(currentIndex, factor);
+   
+         if (currentIndex == -1) return;
+    
+         tat=exectuteTimes[currentIndex]+totalExectuteTime;
+
+         
+         $(inputTable[currentIndex + 1].children[3]).text(totalExectuteTime);
+         $(inputTable[currentIndex + 1].children[5]).text(tat);
+         
+         console.log('CI: ',currentIndex);
+         totalExectuteTime += exectuteTimes[currentIndex];
+       }
   }
 }
 
@@ -372,6 +457,43 @@ function draw() {
         }
       });
     }
+    $('fresh').html('<table id="resultTable" style="width: 70%"><tr>'
+                    + th
+                    + '</tr><tr>'
+                    + td
+                    + '</tr></table>'
+                   );
+  }
+  else if (algorithm == "Best-job-first") {
+    var exectuteTimes=[];
+    var priority=[];
+    var perAtime=[];
+    var perBtime=[];
+    var perPriority=[];
+    var factor=[];
+    var executeTimes=[];
+   $.each(inputTable, function (key, value) {
+      if(key==0) return true;
+      exectuteTimes[key - 1] = parseInt($(value.children[2]).children().first().val());
+      priority[key-1]=parseInt($(value.children[4]).children().first().val());
+      perAtime[key-1]=parseInt($(value.children[6]).children().first().val());
+      perBtime[key-1]=parseInt($(value.children[7]).children().first().val());
+      perPriority[key-1]=parseInt($(value.children[8]).children().first().val());
+      factor[key-1]=((priority[key-1]*perPriority[key-1])/100+((key-1)*perAtime[key-1])/100+(exectuteTimes[key-1]*perBtime[key-1])/100);
+      executeTimes[key - 1] = { "executeTime": exectuteTimes[key-1], "P": key - 1, "priority": factor[key-1] };
+     });
+
+    executeTimes.sort(function (a, b) {
+      if (a.priority == b.priority)
+        return a.P - b.P;
+      return b.priority - a.priority
+    });
+
+    $.each(executeTimes, function (key, value) {
+      th += '<th style="height: 60px; width: ' + value.executeTime * 20 + 'px;">P' + value.P + '</th>';
+      td += '<td>' + value.executeTime + '</td>';
+    });
+
     $('fresh').html('<table id="resultTable" style="width: 70%"><tr>'
                     + th
                     + '</tr><tr>'
