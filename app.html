@@ -15,7 +15,9 @@
         <input type="radio" name="algorithm" value="fcfs" checked/> FCFS<br/>
         <input type="radio" name="algorithm" value="sjf"/> SJF<br/>
         <input type="radio" name="algorithm" value="priority"/> Priority scheduling<br/>
-        <input type="radio" name="algorithm" value="robin"/> Round Robin
+        <input type="radio" name="algorithm" value="robin"/> Round Robin<br/>
+        <input type="radio" name="algorithm" value="Best-job-first"/> Best-job-first  [F = (PriorityxPririty_ratio)+(Arrival Time x Arrival Time_ratio)+(Burst TimexBurst Time_ratio)
+        ]
       </form>
       <br>
     </div>
@@ -27,6 +29,10 @@
               <th class="servtime">Waiting Time</th>
               <th class="priority-only">Priority</th>
               <th class="turnAroundTime">Turn Around Time</th>
+              <th class="Arrival-time">% Arrival time </th>
+              <th class="Burst-time">% Burst time </th>
+              <th class="Priority-time">% Priority</th>
+              <th class="Factor ">Factor (F)</th>
           </tr>
           <tr>
               <td>P0</td>
@@ -35,17 +41,25 @@
               <td class="servtime"></td>
               <td class="priority-only initial"><input type="text"/></td>
               <td class="turnAroundTime"></td>
+              <td class="Arrival-time initial"><input type="text"/></td>
+              <td class="Burst-time initial"><input type="text"/></td>
+              <td class="Priority-time initial"><input type="text"/></td>
+              <td class="Factor"></td>
           </tr>
           <tr>
               <td>P1</td>
               <td>1</td>
               <td><input class="initial exectime" value="3" /></td>
               <td class="servtime"></td>
-              <td class="priority-only" ><input type="text"/></td>
-              <td class="turnAroundTime"></td>
+              <td class="priority-only initial" ><input type="text"/></td>
+              <td class="turnAroundTime "></td>
+              <td class="Arrival-time initial"><input type="text"/></td>
+              <td class="Burst-time initial"><input type="text"/></td>
+              <td class="Priority-time initial"><input type="text"/></td>
+              <td class="Factor "></td>
           </tr>
       </table>
-      <input id="minus" style="display: inline; left: 565px; position: absolute; top: 170px;" type="button" value="-" onclick="deleteRow();" />
+      <input id="minus" style="display: inline; left: 565px; position: absolute; top: 190px;" type="button" value="-" onclick="deleteRow();" />
       </div>
       <input type="button" value="+" onclick="addRow();" />
   <div>
