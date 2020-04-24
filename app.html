@@ -8,16 +8,17 @@
 </head>
 <body>
   
+<h1> Scheduling Simulator</h1>
+
   <div>   
     <div>
-      Algorithm:
+      <h3>Which algorithm to simulate:</h3>
       <form id="algorithm">
         <input type="radio" id="1" name="algorithm" value="fcfs" checked/> FCFS<br/>
         <input type="radio" id="2" name="algorithm" value="sjf"/> SJF<br/>
         <input type="radio" id="3" name="algorithm" value="priority"/> Priority scheduling<br/>
         <input type="radio" id="4" name="algorithm" value="robin"/> Round Robin<br/>
-        <input type="radio" id="5" name="algorithm" value="Best-job-first"/> Best-job-first  [F = (PriorityxPririty_ratio)+(Arrival Time x Arrival Time_ratio)+(Burst TimexBurst Time_ratio)
-        ]
+        <input type="radio" id="5" name="algorithm" value="Best-job-first"/> Best-job-first <span id="small">   F = (PriorityxPriority_ratio)+(Arrival Time x Arrival Time_ratio)+(Burst TimexBurst Time_ratio)</span>
       </form>
       <br>
     </div>
@@ -25,7 +26,7 @@
           <tr>
               <th>Process</th>
               <th>Arrival Time</th>
-              <th>Execute Time</th>
+              <th>Burst Time</th>
               <th class="servtime">Waiting Time</th>
               <th class="priority-only">Priority</th>
               <!--<th class="complete-time">Completion Time</th> -->
@@ -62,23 +63,23 @@
               <td class="Factor "></td>
           </tr>
       </table>
-      <input id="minus" style="display: inline; left: 565px; position: absolute; top: 190px;" type="button" value="-" onclick="deleteRow();" />
       </div>
-      <input type="button" value="+" onclick="addRow();" />
+      <input class="button" type="button" value="+" onclick="addRow();" />
+      <input class="button" id="minus" type="button" value="-" onclick="deleteRow();" />
   <div>
     </div>    
       <p id="quantumParagraph" hidden>Quantum: 
           <input style="width: 50px;" id="quantum" type="text" value="3" onchange="recalculateServiceTime()" />
       </p>
-      <input type="button" value="Go" onclick="avg();draw();" />
+      <input class="bt1" type="button" value="Go" onclick="avg();draw();" />
       <br/><br/>
   
       <fresh>
       </fresh>
       <p>
-      Timer: <strong id="timer"></strong> sec
-      Avgwt:  <strong id="Avgwt"></strong> sec
-      Avgtat: <strong id="Avgtat"></strong> sec
+      <span class="ti1">Timer: <strong id="timer"></strong> sec <br/></span>
+      <span class="avgans">Average Waiting Time:  <strong id="Avgwt"></strong> sec </span>
+      <span class="avgans">Average Turn Around Time: <strong id="Avgtat"></strong> sec</span>
       </p>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script src="app.js" charset="utf-8"></script>
