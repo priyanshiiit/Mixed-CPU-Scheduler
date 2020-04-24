@@ -12,11 +12,11 @@
     <div>
       Algorithm:
       <form id="algorithm">
-        <input type="radio" name="algorithm" value="fcfs" checked/> FCFS<br/>
-        <input type="radio" name="algorithm" value="sjf"/> SJF<br/>
-        <input type="radio" name="algorithm" value="priority"/> Priority scheduling<br/>
-        <input type="radio" name="algorithm" value="robin"/> Round Robin<br/>
-        <input type="radio" name="algorithm" value="Best-job-first"/> Best-job-first  [F = (PriorityxPririty_ratio)+(Arrival Time x Arrival Time_ratio)+(Burst TimexBurst Time_ratio)
+        <input type="radio" id="1" name="algorithm" value="fcfs" checked/> FCFS<br/>
+        <input type="radio" id="2" name="algorithm" value="sjf"/> SJF<br/>
+        <input type="radio" id="3" name="algorithm" value="priority"/> Priority scheduling<br/>
+        <input type="radio" id="4" name="algorithm" value="robin"/> Round Robin<br/>
+        <input type="radio" id="5" name="algorithm" value="Best-job-first"/> Best-job-first  [F = (PriorityxPririty_ratio)+(Arrival Time x Arrival Time_ratio)+(Burst TimexBurst Time_ratio)
         ]
       </form>
       <br>
@@ -28,6 +28,7 @@
               <th>Execute Time</th>
               <th class="servtime">Waiting Time</th>
               <th class="priority-only">Priority</th>
+              <!--<th class="complete-time">Completion Time</th> -->
               <th class="turnAroundTime">Turn Around Time</th>
               <th class="Arrival-time">% Arrival time </th>
               <th class="Burst-time">% Burst time </th>
@@ -40,6 +41,7 @@
               <td><input class="initial exectime" type="text" value="5" /></td>
               <td class="servtime"></td>
               <td class="priority-only initial"><input type="text"/></td>
+              <!-- <td class="complete-time"></td> -->
               <td class="turnAroundTime"></td>
               <td class="Arrival-time initial"><input type="text"/></td>
               <td class="Burst-time initial"><input type="text"/></td>
@@ -52,6 +54,7 @@
               <td><input class="initial exectime" value="3" /></td>
               <td class="servtime"></td>
               <td class="priority-only initial" ><input type="text"/></td>
+              <!-- <td class="complete-time"></td> -->
               <td class="turnAroundTime "></td>
               <td class="Arrival-time initial"><input type="text"/></td>
               <td class="Burst-time initial"><input type="text"/></td>
@@ -65,7 +68,7 @@
   <div>
     </div>    
       <p id="quantumParagraph" hidden>Quantum: 
-          <input style="width: 50px;" id="quantum" type="text" value="3" />
+          <input style="width: 50px;" id="quantum" type="text" value="3" onchange="recalculateServiceTime()" />
       </p>
       <input type="button" value="Go" onclick="draw();" />
       <br/><br/>
