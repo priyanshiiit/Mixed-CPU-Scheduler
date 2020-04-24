@@ -7,7 +7,7 @@ Stimulate Algorithm like:<br />
 ->Priority scheduling<br />
 ->Round Robin<br />
 ->Best-job-first<br /> based on [F = (PriorityxPririty_ratio)+(Arrival Time x Arrival Time_ratio)+(Burst TimexBurst Time_ratio) ]
-<br />
+<br /><br /><br />
 Os Lab Project<br />
 
 Made by:<br />
