@@ -130,9 +130,8 @@ function recalculateServiceTime() {
 
 		var currentIndex = 0;
 		for (var i = 0; i < exectuteTimes.length; i++) {
-      tat = 0;
-        $(inputTable[i + 1].children[1]).text(i);
-			
+			tat = 0;
+			$(inputTable[i + 1].children[1]).text(i);
 		}
 
 		var i = 0;
@@ -182,10 +181,14 @@ function recalculateServiceTime() {
 			priorities[key - 1] = parseInt($(value.children[4]).children().first().val());
 		});
 
+		for (var i = 0; i < exectuteTimes.length; i++) {
+			$(inputTable[i + 1].children[1]).text('0');
+		}
+
 		var currentIndex = -1;
 		for (var i = 0; i < exectuteTimes.length; i++) {
 			tat = 0;
-			$(inputTable[i + 2].children[1]).text('0');
+			//$(inputTable[i + 2].children[1]).text('0');
 			currentIndex = findNextIndexWithPriority(currentIndex, priorities);
 
 			if (currentIndex == -1) return;
@@ -200,58 +203,55 @@ function recalculateServiceTime() {
 	} else if (algorithm == 'robin') {
 		$('#minus').css('left', '570px');
 
+		var exectuteTimes = [];
+		var wt = [];
+		var bt = [];
+		var tat = [];
 
-			var exectuteTimes = [];
-			var wt = [];
-			var bt = [];
-      var tat = [];
-      
-			$.each(inputTable, function(key, value) {
-				if (key == 0) return true;
-				exectuteTimes[key - 1] = parseInt($(value.children[2]).children().first().val());
-				bt[key - 1] = parseInt($(value.children[2]).children().first().val());
-			});
-     
+		$.each(inputTable, function(key, value) {
+			if (key == 0) return true;
+			exectuteTimes[key - 1] = parseInt($(value.children[2]).children().first().val());
+			bt[key - 1] = parseInt($(value.children[2]).children().first().val());
+		});
+
+		for (var i = 0; i < bt.length; i++) {
+			wt[i] = 0;
+			tat[i] = 0;
+			$(inputTable[i + 1].children[1]).text(0);
+		}
+		//console.log(wt[0],bt[0],exectuteTimes[0]+1)
+		var t = 0;
+		var quantum = parseInt($('#quantum').val());
+
+		while (1) {
+			var done = true;
 			for (var i = 0; i < bt.length; i++) {
-				wt[i] = 0;
-        tat[i] = 0;
-        $(inputTable[i + 1].children[1]).text(0);
-			}
-			//console.log(wt[0],bt[0],exectuteTimes[0]+1)
-			var t = 0;
-			var quantum = parseInt($('#quantum').val());
-			
-			while (1) {
-				var done = true;
-				for (var i = 0; i < bt.length; i++) {
-          //console.log('exe',exectuteTimes[i])
-					if (exectuteTimes[i] > 0) {
-						done = false;
+				//console.log('exe',exectuteTimes[i])
+				if (exectuteTimes[i] > 0) {
+					done = false;
 
-						if (exectuteTimes[i] > quantum) {
-              t =t+ quantum;
-              exectuteTimes[i] -= quantum;
-             
-						} else {
-							t = t + exectuteTimes[i];
-							//console.log(wt);
-							wt[i] = t - bt[i];
-							exectuteTimes[i] = 0;
-						}
+					if (exectuteTimes[i] > quantum) {
+						t = t + quantum;
+						exectuteTimes[i] -= quantum;
+					} else {
+						t = t + exectuteTimes[i];
+						//console.log(wt);
+						wt[i] = t - bt[i];
+						exectuteTimes[i] = 0;
 					}
 				}
-				if (done == true) break;
 			}
+			if (done == true) break;
+		}
 
-			for (var i = 0; i < bt.length; i++) tat[i] = bt[i] + wt[i];
+		for (var i = 0; i < bt.length; i++) tat[i] = bt[i] + wt[i];
 
-			//console.log(wt)
-			for (var i = 0; i < bt.length; i++) {
-				//console.log(wt[i],tat[i])
-				$(inputTable[i + 1].children[3]).text(wt[i]);
-				$(inputTable[i + 1].children[5]).text(tat[i]);
-			}
-		
+		//console.log(wt)
+		for (var i = 0; i < bt.length; i++) {
+			//console.log(wt[i],tat[i])
+			$(inputTable[i + 1].children[3]).text(wt[i]);
+			$(inputTable[i + 1].children[5]).text(tat[i]);
+		}
 	} else if (algorithm == 'Best-job-first') {
 		var exectuteTimes = [];
 		var priority = [];
@@ -274,9 +274,8 @@ function recalculateServiceTime() {
 		var currentIndex = -1;
 
 		for (var i = 0; i < exectuteTimes.length; i++) {
-      $(inputTable[i + 1].children[9]).text(factor[i].toFixed(2));
-        $(inputTable[i + 1].children[1]).text(0);
-			
+			$(inputTable[i + 1].children[9]).text(factor[i].toFixed(2));
+			$(inputTable[i + 1].children[1]).text(0);
 		}
 
 		for (var i = 0; i < exectuteTimes.length; i++) {
