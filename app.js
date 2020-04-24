@@ -35,7 +35,7 @@ $(document).ready(function() {
 			$('.priority-only').show();
 			$('.servtime').show();
 			$('.turnAroundTime').show();
-			$('td .Factor').innertext('');
+			$('td .Factor').show('');
 		} else {
 			$('#quantumParagraph').hide();
 			$('.servtime').show();
@@ -167,6 +167,7 @@ function recalculateServiceTime() {
 			$(inputTable[currentIndex + 1].children[3]).text(totalExectuteTime);
 			tat = exectuteTimes[currentIndex] + totalExectuteTime;
 			$(inputTable[currentIndex + 1].children[5]).text(tat);
+			
 
 			totalExectuteTime += exectuteTimes[currentIndex];
 		}
@@ -194,7 +195,6 @@ function recalculateServiceTime() {
 			if (currentIndex == -1) return;
 
 			tat = exectuteTimes[currentIndex] + totalExectuteTime;
-
 			$(inputTable[currentIndex + 1].children[3]).text(totalExectuteTime);
 			$(inputTable[currentIndex + 1].children[5]).text(tat);
 
@@ -289,7 +289,7 @@ function recalculateServiceTime() {
 			$(inputTable[currentIndex + 1].children[3]).text(totalExectuteTime);
 			$(inputTable[currentIndex + 1].children[5]).text(tat);
 
-			console.log('CI: ', currentIndex);
+	//		console.log('CI: ', currentIndex);
 			totalExectuteTime += exectuteTimes[currentIndex];
 		}
 	}
@@ -526,4 +526,43 @@ function draw() {
 		$('fresh').html('<table id="resultTable" style="width: 70%"><tr>' + th + '</tr><tr>' + td + '</tr></table>');
 	}
 	animate();
+}
+
+
+function avg()
+{
+	// $('fresh').html('');
+	var inputTable = $('#inputTable tr');
+	var sumwt = 0;
+	var sumtat = 0;
+	var nP=0;
+
+	var algorithm = $('input[name=algorithm]:checked', '#algorithm').val();
+
+
+	$('#inputTable .servtime').each(function(key, value) {
+	  // alert($(this).html());
+	  var s = $(this).html();
+	  if(s == "Waiting Time")
+	  	return true;
+	  sumwt += parseInt(s);
+	});
+
+	$('#inputTable .turnAroundTime').each(function(key, value) {
+	  // alert($(this).html());
+	  var s = $(this).html();
+	  if(s == "Turn Around Time")
+	  	return true;
+	  sumtat += parseInt(s);
+	});
+
+	$.each(inputTable, function(key, value) {
+			if (key == 0) return true;
+			nP=key;
+		});
+
+	
+	$('#Avgwt').html(sumwt/nP);
+	$('#Avgtat').html(sumtat/nP);
+	
 }
