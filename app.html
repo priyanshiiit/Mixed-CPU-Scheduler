@@ -70,13 +70,15 @@
       <p id="quantumParagraph" hidden>Quantum: 
           <input style="width: 50px;" id="quantum" type="text" value="3" onchange="recalculateServiceTime()" />
       </p>
-      <input type="button" value="Go" onclick="draw();" />
+      <input type="button" value="Go" onclick="avg();draw();" />
       <br/><br/>
   
       <fresh>
       </fresh>
       <p>
       Timer: <strong id="timer"></strong> sec
+      Avgwt:  <strong id="Avgwt"></strong> sec
+      Avgtat: <strong id="Avgtat"></strong> sec
       </p>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   <script src="app.js" charset="utf-8"></script>
