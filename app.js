@@ -267,8 +267,8 @@ function recalculateServiceTime() {
 			perBtime[key - 1] = parseInt($(value.children[7]).children().first().val());
 			perPriority[key - 1] = parseInt($(value.children[8]).children().first().val());
 			factor[key - 1] =
-				priority[key - 1] * perPriority[key - 1] / 100 +
-				(key - 1) * perAtime[key - 1] / 100 +
+				priority[key - 1] * perPriority[key - 1] / 100 -
+				(key - 1) * perAtime[key - 1] / 100 -
 				exectuteTimes[key - 1] * perBtime[key - 1] / 100;
 		});
 		var currentIndex = -1;
@@ -507,8 +507,8 @@ function draw() {
 			perBtime[key - 1] = parseInt($(value.children[7]).children().first().val());
 			perPriority[key - 1] = parseInt($(value.children[8]).children().first().val());
 			factor[key - 1] =
-				priority[key - 1] * perPriority[key - 1] / 100 +
-				(key - 1) * perAtime[key - 1] / 100 +
+				priority[key - 1] * perPriority[key - 1] / 100 -
+				(key - 1) * perAtime[key - 1] / 100 -
 				exectuteTimes[key - 1] * perBtime[key - 1] / 100;
 			executeTimes[key - 1] = { executeTime: exectuteTimes[key - 1], P: key - 1, priority: factor[key - 1] };
 		});
