@@ -1,28 +1,80 @@
-        fresh th {
-            background: linear-gradient(WhiteSmoke, lightgray);
-            text-align: left;
-            border: 1px solid black;
-            height: 400 px;
-        }
-        fresh td {
-            border: 1px solid black;
-            border-bottom: 0;
-            /*border-right: 0;*/
-            height: 20px;
-            text-align: left;
-        }
+fresh th {
+    background: linear-gradient(WhiteSmoke, lightgray);
+    text-align: left;
+    border: 1px solid black;
+    height: 400 px;
+}
+fresh td {
+    border: 1px solid black;
+    border-bottom: 1px solid #A9A9A9;
+    /*border-right: 0;*/
+    height: 20px;
+    text-align: left;
+}
+div th, div td {
+    border: 1px solid black;
+    text-align: center;
+}
+table {
+   display: inline;
+   border-collapse: collapse;
+}
+input {
+    text-align: center;
+}
+#curtain {
+   background-color: white;
+ }
+body{
+    background-color: rgb(245,245,245);
+    text-align: center;
+    font-family: "Times New Roman", Times, serif;
+}
+h1{
+    font-size: 50px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: underline;
+    
+}
+#algorithm{
+   text-align: left;
+   padding:0 25em; 
+}
+#small{
+    font-size: 10px;
+    font-style: italic;
+}
 
-        div th, div td {
-            border: 1px solid black;
-            text-align: center;
-        }
-        table {
-            display: inline;
-            border-collapse: collapse;
-        }
-        input {
-            text-align: center;
-        }
-        #curtain {
-          background-color: white;
-        }
+.button {
+  background-color: #D3D3D3;
+  margin: 8px; 
+  border: 2px solid #A9A9A9;
+  color: black;
+  padding: 8px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.bt1 {
+  background-color: #D3D3D3;
+  margin: 2px; 
+  border: 2px solid #A9A9A9;
+  color: black;
+  padding: 10px 25px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 18px;
+}
+.avgans{
+    padding: 3px 10px;
+    font-size: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+.ti1{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;   
+}
