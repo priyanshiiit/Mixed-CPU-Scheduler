@@ -28,9 +28,9 @@ google-chrome app.html  or  firefox app.html
 
 
 ### Contributors:
-1.	 [Divyansh Kumar (2018-IMT-031)](https://github.com/)
-2.	 [Harsh Wallia (2018-IMT-036)](https://github.com/harshwalia36)
-3.	 [Nikhil Choudary (2018-IMT-058)](https://github.com/)
+1.	 [Divyansh Kumar Singh(2018-IMT-031)](https://github.com/)
+2.	 [Harsh Walia (2018-IMT-036)](https://github.com/harshwalia36)
+3.	 [Nikhil Choudhary (2018-IMT-058)](https://github.com/)
 4. 	 [Priyansh Rastogi (2018-IMT-073)](https://github.com/github2k20)
 5. 	 [Swatik Paul (2018-IMT-100)](https://github.com/swatikpl44)
 6.	 [Vivek Kamboj (2018-IMT-109)](https://github.com/Vivek-Kamboj)
