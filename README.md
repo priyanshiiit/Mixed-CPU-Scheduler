@@ -1,19 +1,32 @@
-# Mixed-CPU-Scheduler
-A simple web app for implementing mixed CPU Scheduling algorithms.
+# Mixed CPU Scheduler
 
-Stimulate Algorithm like:<br />
-->FCFS<br />
-->SJF<br />
-->Priority scheduling<br />
-->Round Robin<br />
-->Best-job-first<br /> based on [F = (PriorityxPririty_ratio)+(Arrival Time x Arrival Time_ratio)+(Burst TimexBurst Time_ratio) ]
-<br /><br /><br />
-Os Lab Project<br />
+This is a web app that provides a comprehensive simulation of CPU Scheduling Algorithms.
+It includes the design and development of a new CPU Scheduling Algorithm (the **Best Job First Algorithm**).
 
-Made by:<br />
-->Harsh Wallia (2018-IMT-036)<br />
-->Swatik Paul (2018-IMT-100)<br />
-->Vivek Kamboj (2018-IMT-109)<br />
-->Priyansh Rastogi (2018-IMT-073)<br />
-->Divyansh Kumar (2018-IMT-031)<br />
-->Nikhil Choudary (2018-IMT-058)<br />
+
+### CPU Scheduling Algorithms included:
+1.   First Come First Serve (FCFS)
+2.   Shortest Job First (SJF)
+3.   Priority Scheduling
+4.	 Round Robin with a variable Time Quantum
+5.	 Best Job First (New)
+
+
+### Instructions
+```
+git clone https://github.com/github2k20/Mixed-CPU-Scheduler.git
+cd Mixed-CPU-Scheduler
+google-chrome app.html  or  firefox app.html
+```
+
+
+### Contributors:
+1.	 [Divyansh Kumar (2018-IMT-031)](https://github.com/)
+2.	 [Harsh Wallia (2018-IMT-036)](https://github.com/harshwalia36)
+3.	 [Nikhil Choudary (2018-IMT-058)](https://github.com/)
+4. 	 [Priyansh Rastogi (2018-IMT-073)](https://github.com/github2k20)
+5. 	 [Swatik Paul (2018-IMT-100)](https://github.com/swatikpl44)
+6.	 [Vivek Kamboj (2018-IMT-109)](https://github.com/Vivek-Kamboj)
+
+
+
