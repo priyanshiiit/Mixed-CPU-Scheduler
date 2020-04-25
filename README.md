@@ -11,6 +11,12 @@ It includes the design and development of a new CPU Scheduling Algorithm (the **
 4.	 Round Robin with a variable Time Quantum
 5.	 Best Job First (New)
 
+### Demo
+
+<div align='center'>
+<img style="border:1px black solid;" height=300px width=500px src="demo.gif">
+</div>
+
 
 ### Instructions
 ```
